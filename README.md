@@ -1,4 +1,6 @@
 # Liverpool-Stats
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://https://liverpool-stats-final.streamlit.app/)
+https://liverpool-stats-final.streamlit.app
 
 # Liverpool 2019 Season Visualizer
 
