@@ -8,9 +8,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-
-
-
 #create columns for liverpool logo
 col1, col2, col3 = st.columns(3)
 with col1:
@@ -47,8 +44,12 @@ if selected_tab == "Opponent Stats":
      
         #selectbox for different opponent statistics
         opponent = liverpool['Opponent'].unique() 
-        opponent_choice = st.selectbox('Select an Opponent Team:', opponent) 
-        filtered_df = liverpool.loc[liverpool['Opponent'] == opponent_choice]
+        opponent = ['All Opponents'] + list(opponent)
+        opponent_choice = st.selectbox('Select an Opponent Team to View their Stats:', opponent) 
+        if opponent_choice == 'All Opponents':
+            filtered_df = liverpool  # Display the whole dataset if 'All Opponents' is selected
+        else:
+            filtered_df = liverpool.loc[liverpool['Opponent'] == opponent_choice]
         st.dataframe(filtered_df)
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -84,7 +85,10 @@ if selected_tab == "Opponent Stats":
 
         #scatter plot map
         x_variable_options = ["GF", "GA", "Result", "Poss", "Attendance"]
-        x_variable = st.selectbox("Select a Variable:", x_variable_options)
+        x_variable_display_names = ["Goals For Liverpool", "Goals Against Liverpool", "Result", "Possession", "Attendance"]
+        
+        x_variable_index = st.selectbox("Select a Variable:", options=x_variable_display_names, index=0)
+        x_variable = x_variable_options[x_variable_display_names.index(x_variable_index)]
         y_variable = "Opponent"
 
         plt.figure(figsize=(7, 5))
@@ -155,24 +159,4 @@ elif selected_tab == "Game Result Stats":
         plt.xlabel("Result")
         plt.ylabel("Goals for Liverpool")
         st.pyplot()
-
-
-
-
-
-
-
-
-
-
-
-        
-
-        
-              
-
-
-
-
-
 
