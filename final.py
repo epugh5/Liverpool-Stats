@@ -22,12 +22,12 @@ with col3:
 
 st.title("Liverpool's 2019 Statistics")
 
-st.markdown('''
+st.sidebar.markdown('''
     :red[Browse Liverpool statistics on opponent teams and their game results for 2019!]''')
 
 #create two tabs for dataset
 tabs = ['Opponent Stats', 'Game Result Stats']
-selected_tab = st.radio("Select Tabs", tabs)
+selected_tab = st.sidebar.radio("Select Tabs", tabs)
 
 #import csv data
 @st.cache_data
